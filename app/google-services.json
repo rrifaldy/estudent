@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "101476713714",
+    "firebase_url": "https://e-student-ab8f0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "e-student-ab8f0",
+    "storage_bucket": "e-student-ab8f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101476713714:android:e1df3f3107dd023122fc6b",
+        "android_client_info": {
+          "package_name": "com.example.estudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101476713714-2ii48thlbunkpm11ed4af2j695ferioo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCelc8UY4i5MoE6Km7HyUyVxvdDRRsaI3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101476713714-2ii48thlbunkpm11ed4af2j695ferioo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
