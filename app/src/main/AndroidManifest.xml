@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.estudent">
+    package="com.example.estudent" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +10,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EStudent">
+        android:theme="@style/Theme.EStudent" >
+        <activity
+            android:name=".MahasiswaFragment"
+            android:exported="false" />
+        <activity
+            android:name=".petugas.UpdatePetugas"
+            android:exported="false" />
+        <activity
+            android:name=".petugas.CreatePetugas"
+            android:exported="false" />
+        <activity
+            android:name=".buku.UpdateBook"
+            android:exported="false" />
+        <activity
+            android:name=".buku.CreateBook"
+            android:exported="false" />
+        <activity
+            android:name=".PetugasFragment"
+            android:exported="false" />
+        <activity
+            android:name=".BookFragment"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".mahasiswa.UpdateActivity"
             android:exported="false" />
@@ -19,13 +49,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/drawable/bgbtn.xml" value="0.114" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/drawable/bgtext.xml" value="0.114" />
         <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/drawable/custom_txt.xml" value="0.1135" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/drawable/selector.xml" value="0.114" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_book.xml" value="0.14175724637681159" />
         <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_create.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_create_book.xml" value="0.14175724637681159" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_login.xml" value="0.14175724637681159" />
         <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_petugas.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_update.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_update_book.xml" value="0.14175724637681159" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/activity_update_petugas.xml" value="0.14175724637681159" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/item_book.xml" value="0.14175724637681159" />
+        <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/layout/item_mahasiswa.xml" value="0.25" />
         <entry key="..\:/Users/Rifky/AndroidStudioProjects/EStudent/app/src/main/res/menu/menu_form.xml" value="0.22447916666666667" />
       </map>
     </option>

@@ -5,28 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="16dp"
+    android:layout_margin="15dp"
     tools:context=".mahasiswa.CreateActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add New Data"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ancestors"
+        android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="NPM"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edt_nim"
-        android:background="@drawable/custom_txt"
         android:padding="12dp"
+        android:background="@drawable/custom_txt"
         android:layout_marginTop="10dp"/>
 
     <TextView
@@ -39,16 +38,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edt_nama"
-        android:background="@drawable/custom_txt"
         android:padding="12dp"
+        android:background="@drawable/custom_txt"
         android:layout_marginTop="10dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bgbtn"
         android:id="@+id/btn_save"
         android:text="Save"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="20dp"
         />
 
 </LinearLayout>

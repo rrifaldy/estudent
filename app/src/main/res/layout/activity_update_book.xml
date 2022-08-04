@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_margin="15dp"
     android:orientation="vertical"
-    android:layout_margin="16dp"
-    tools:context=".mahasiswa.UpdateActivity">
+    android:layout_height="match_parent"
+    tools:context=".buku.UpdateBook">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Data Mahasiswa"
+        android:text="Edit Data Buku"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -19,12 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="NPM"
+        android:text="Judul "
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edt_edit_nim"
+        android:id="@+id/edt_edit_judul"
         android:background="@drawable/custom_txt"
         android:padding="12dp"
         android:layout_marginTop="10dp"/>
@@ -32,7 +32,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama"
+        android:text="Penulis"
         android:layout_marginTop="15dp"/>
 
     <EditText
@@ -40,7 +40,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edt_edit_nama"
+        android:id="@+id/edt_edit_penulis"
         android:background="@drawable/custom_txt"/>
 
     <Button

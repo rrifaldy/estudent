@@ -1,4 +1,4 @@
-package com.example.estudent.mahasiswa;
+package com.example.estudent.petugas;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,47 +14,48 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.estudent.R;
+import com.example.estudent.mahasiswa.UpdateActivity;
 import com.example.estudent.model.Mahasiswa;
+import com.example.estudent.model.Petugas;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {
+public class UpdatePetugas extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText edtNim, edtNama;
+    private EditText editUser, editPass;
     private Button btnUpdate;
 
-    public static final String EXTRA_MAHASISWA = "extra_mahasiswa";
+    public static final String EXTRA_PETUGAS = "extra_petugas";
     public final int ALERT_DIALOG_CLOSE = 10;
     public final int ALERT_DIALOG_DELETE = 20;
 
-    private Mahasiswa mahasiswa;
-    private String mahasiswaId;
+    private Petugas petugas;
+    private String petugasId;
 
     DatabaseReference mDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update);
+        setContentView(R.layout.activity_update_petugas);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        edtNama = findViewById(R.id.edt_edit_nama);
-        edtNim = findViewById(R.id.edt_edit_nim);
+        editUser = findViewById(R.id.edt_edit_user);
+        editPass = findViewById(R.id.edt_edit_pass);
         btnUpdate = findViewById(R.id.btn_update);
         btnUpdate.setOnClickListener(this);
 
-        mahasiswa = getIntent().getParcelableExtra(EXTRA_MAHASISWA);
+        petugas = getIntent().getParcelableExtra(EXTRA_PETUGAS);
 
-        if (mahasiswa != null) {
-            mahasiswaId = mahasiswa.getId();
+        if (petugas != null) {
+            petugasId = petugas.getId();
         } else {
-            mahasiswa = new Mahasiswa();
+            petugas = new Petugas();
         }
 
-        if (mahasiswa != null) {
-            edtNim.setText(mahasiswa.getNim());
-            edtNama.setText(mahasiswa.getNama());
+        if (petugas != null) {
+            editUser.setText(petugas.getUsername());
+            editPass.setText(petugas.getPassword());
 
         }
 
@@ -68,42 +69,38 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_update) {
-            updateMahasiswa();
+            updatePetugas();
         }
-
     }
 
-    public void updateMahasiswa() {
-        String nama = edtNama.getText().toString().trim();
-        String nim = edtNim.getText().toString().trim();
+    public void updatePetugas() {
+        String user = editUser.getText().toString().trim();
+        String pass = editPass.getText().toString().trim();
 
         boolean isEmptyFields = false;
 
-        if (TextUtils.isEmpty(nama)) {
+        if (TextUtils.isEmpty(user)) {
             isEmptyFields = true;
-            edtNama.setError("Field Cannot Be Empty");
+            editUser.setError("Field Cannot Be Empty");
         }
 
-        if (TextUtils.isEmpty(nim)) {
+        if (TextUtils.isEmpty(pass)) {
             isEmptyFields = true;
-            edtNim.setError("Field Cannot Be Empty");
+            editPass.setError("Field Cannot Be Empty");
         }
 
         if (! isEmptyFields) {
 
-            Toast.makeText(UpdateActivity.this, "Updating Data Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdatePetugas.this, "Updating Data Success", Toast.LENGTH_SHORT).show();
 
-            mahasiswa.setNim(nim);
-            mahasiswa.setNama(nama);
-            mahasiswa.setPhoto("");
+            petugas.setUsername(user);
+            petugas.setPassword(pass);
+            petugas.setPhoto("");
 
-            DatabaseReference dbMahasiswa = mDatabase.child("mahasiswa");
+            DatabaseReference dbPetugas = mDatabase.child("petugas");
 
-            //update data
-            dbMahasiswa.child(mahasiswaId).setValue(mahasiswa);
-
+            dbPetugas.child(petugasId).setValue(petugas);
             finish();
-
         }
     }
 
@@ -114,7 +111,6 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         return super.onCreateOptionsMenu(menu);
     }
 
-    //pilih menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -157,12 +153,12 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                         if (isDialogClose) {
                             finish();
                         } else {
-                            DatabaseReference dbMahasiswa =
-                                    mDatabase.child("mahasiswa").child(mahasiswaId);
+                            DatabaseReference dbPetugas =
+                                    mDatabase.child("petugas").child(petugasId);
 
-                            dbMahasiswa.removeValue();
+                            dbPetugas.removeValue();
 
-                            Toast.makeText(UpdateActivity.this, "Deleting data success",
+                            Toast.makeText(UpdatePetugas.this, "Deleting data success",
                                     Toast.LENGTH_SHORT).show();
                             finish();
                         }

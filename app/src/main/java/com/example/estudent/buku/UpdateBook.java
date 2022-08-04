@@ -1,4 +1,4 @@
-package com.example.estudent.mahasiswa;
+package com.example.estudent.buku;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,107 +14,101 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.estudent.R;
-import com.example.estudent.model.Mahasiswa;
+import com.example.estudent.mahasiswa.UpdateActivity;
+import com.example.estudent.model.Book;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {
+public class UpdateBook extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText edtNim, edtNama;
+    private EditText editJudul, editPenulis;
     private Button btnUpdate;
 
-    public static final String EXTRA_MAHASISWA = "extra_mahasiswa";
+    public static final String EXTRA_BOOK = "extra_book";
     public final int ALERT_DIALOG_CLOSE = 10;
     public final int ALERT_DIALOG_DELETE = 20;
 
-    private Mahasiswa mahasiswa;
-    private String mahasiswaId;
+    private Book book;
+    private String bookId;
 
     DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update);
+        setContentView(R.layout.activity_update_book);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+    mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        edtNama = findViewById(R.id.edt_edit_nama);
-        edtNim = findViewById(R.id.edt_edit_nim);
-        btnUpdate = findViewById(R.id.btn_update);
-        btnUpdate.setOnClickListener(this);
+    editJudul = findViewById(R.id.edt_edit_judul);
+    editPenulis = findViewById(R.id.edt_edit_penulis);
+    btnUpdate = findViewById(R.id.btn_update);
+    btnUpdate.setOnClickListener(this);
 
-        mahasiswa = getIntent().getParcelableExtra(EXTRA_MAHASISWA);
+    book = getIntent().getParcelableExtra(EXTRA_BOOK);
 
-        if (mahasiswa != null) {
-            mahasiswaId = mahasiswa.getId();
-        } else {
-            mahasiswa = new Mahasiswa();
-        }
+        if (book != null) {
+        bookId = book.getId();
+    } else {
+        book = new Book();
+    }
 
-        if (mahasiswa != null) {
-            edtNim.setText(mahasiswa.getNim());
-            edtNama.setText(mahasiswa.getNama());
-
-        }
+        if (book != null) {
+        editJudul.setText(book.getJudul());
+        editPenulis.setText(book.getPenulis());
+    }
 
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Edit Data");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
+        getSupportActionBar().setTitle("Edit Data");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+}
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_update) {
-            updateMahasiswa();
+            updateBook();
         }
-
     }
 
-    public void updateMahasiswa() {
-        String nama = edtNama.getText().toString().trim();
-        String nim = edtNim.getText().toString().trim();
+    public void updateBook() {
+        String judul = editJudul.getText().toString().trim();
+        String penulis = editPenulis.getText().toString().trim();
 
         boolean isEmptyFields = false;
 
-        if (TextUtils.isEmpty(nama)) {
+        if (TextUtils.isEmpty(judul)) {
             isEmptyFields = true;
-            edtNama.setError("Field Cannot Be Empty");
+            editJudul.setError("Field Cannot Be Empty");
         }
 
-        if (TextUtils.isEmpty(nim)) {
+        if (TextUtils.isEmpty(penulis)) {
             isEmptyFields = true;
-            edtNim.setError("Field Cannot Be Empty");
+            editPenulis.setError("Field Cannot Be Empty");
         }
 
         if (! isEmptyFields) {
 
-            Toast.makeText(UpdateActivity.this, "Updating Data Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdateBook.this, "Updating Data Success", Toast.LENGTH_SHORT).show();
 
-            mahasiswa.setNim(nim);
-            mahasiswa.setNama(nama);
-            mahasiswa.setPhoto("");
+            book.setJudul(judul);
+            book.setPenulis(penulis);
+            book.setPhoto("");
 
-            DatabaseReference dbMahasiswa = mDatabase.child("mahasiswa");
+            DatabaseReference dbBook = mDatabase.child("book");
 
             //update data
-            dbMahasiswa.child(mahasiswaId).setValue(mahasiswa);
-
+            dbBook.child(bookId).setValue(book);
             finish();
-
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_form, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
-    //pilih menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -157,12 +151,12 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                         if (isDialogClose) {
                             finish();
                         } else {
-                            DatabaseReference dbMahasiswa =
-                                    mDatabase.child("mahasiswa").child(mahasiswaId);
+                            DatabaseReference dbBook =
+                                    mDatabase.child("book").child(bookId);
 
-                            dbMahasiswa.removeValue();
+                            dbBook.removeValue();
 
-                            Toast.makeText(UpdateActivity.this, "Deleting data success",
+                            Toast.makeText(UpdateBook.this, "Deleting data success",
                                     Toast.LENGTH_SHORT).show();
                             finish();
                         }

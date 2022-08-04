@@ -11,11 +11,11 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/lpeople"
+        app:srcCompat="@drawable/lman"
         />
 
     <TextView
-        android:id="@+id/txt_nim"
+        android:id="@+id/txt_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
@@ -24,12 +24,12 @@
         android:textSize="18sp"
         android:textStyle="bold" />
     <TextView
-        android:id="@+id/txt_nama"
+        android:id="@+id/txt_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/txt_nim"
+        android:layout_below="@+id/txt_username"
         android:layout_toEndOf="@+id/img_photo"
         android:text="nama"
         android:ellipsize="end"

@@ -1,9 +1,9 @@
 package com.example.estudent;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +12,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.estudent.adapter.MahasiswaAdapter;
-import com.example.estudent.mahasiswa.CreateActivity;
-import com.example.estudent.mahasiswa.UpdateActivity;
-import com.example.estudent.model.Mahasiswa;
+import com.example.estudent.adapter.PetugasAdapter;
+import com.example.estudent.model.Petugas;
+import com.example.estudent.petugas.CreatePetugas;
+import com.example.estudent.petugas.UpdatePetugas;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,22 +25,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public class PetugasFragment extends AppCompatActivity implements View.OnClickListener{
     private ListView listView;
-    private MahasiswaAdapter adapter;
-    private ArrayList<Mahasiswa> mahasiswaList;
+    private PetugasAdapter adapter;
+    private ArrayList<Petugas> petugasList;
     private Button btnAdd;
-
-    DatabaseReference dbMahasiswa;
+    DatabaseReference dbPetugas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_petugas);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+        bottomNavigationView.setSelectedItemId(R.id.nav_petugas);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -50,32 +48,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_petugas:
-                        startActivity(new Intent(getApplicationContext(), PetugasFragment.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.nav_home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
                 }
                 return false;
             }
         });
 
-        dbMahasiswa = FirebaseDatabase.getInstance().getReference("mahasiswa");
+        dbPetugas = FirebaseDatabase.getInstance().getReference("petugas");
 
         listView = findViewById(R.id.lv_list);
         btnAdd = findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(this);
 
-        //list mahasiswa
-        mahasiswaList = new ArrayList<>();
+        petugasList = new ArrayList<>();
 
-        //kode yang ditambahkan
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
-                intent.putExtra(UpdateActivity.EXTRA_MAHASISWA, mahasiswaList.get(i));
-
+                Intent intent = new Intent(PetugasFragment.this, UpdatePetugas.class);
+                intent.putExtra(UpdatePetugas.EXTRA_PETUGAS, petugasList.get(i));
                 startActivity(intent);
             }
         });
@@ -85,24 +80,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
 
-        dbMahasiswa.addValueEventListener(new ValueEventListener() {
+        dbPetugas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mahasiswaList.clear();
+                petugasList.clear();
 
-                for (DataSnapshot mahasiswaSnapshot : dataSnapshot.getChildren()) {
-                    Mahasiswa mahasiswa = mahasiswaSnapshot.getValue(Mahasiswa.class);
-                    mahasiswaList.add(mahasiswa);
+                for (DataSnapshot petugasSnapshot : dataSnapshot.getChildren()) {
+                    Petugas petugas = petugasSnapshot.getValue(Petugas.class);
+                    petugasList.add(petugas);
                 }
 
-                MahasiswaAdapter adapter = new MahasiswaAdapter(MainActivity.this);
-                adapter.setMahasiswaList(mahasiswaList);
+                PetugasAdapter adapter = new PetugasAdapter(PetugasFragment.this);
+                adapter.setPetugasList(petugasList);
                 listView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this, "Something Wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PetugasFragment.this, "Something Wrong", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -110,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btn_add) {
-            Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+            Intent intent = new Intent(PetugasFragment.this, CreatePetugas.class);
             startActivity(intent);
         }
     }
